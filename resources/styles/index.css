@@ -1,0 +1,179 @@
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  margin: 0;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  box-sizing: border-box;
+  /* background-color: #e7ebf0; */
+  font-family: "Open Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
+  /* font-family: "Lucida Grande"; */
+}
+.wrapper {
+  position: relative;
+
+  height: 100%;
+  max-width: 576px;
+  margin: 0 auto;
+
+  background-color: #ffffff;
+  box-shadow: 0px 0px 4px 0px #dfe5ec;
+}
+
+header {
+  position: absolute;
+  height: 54px;
+  width: 100%;
+  background-color: #5682a3;
+  color: #ffffff;
+  box-shadow: 0px 0px 4px 1px #dfe5ec;
+}
+.logo-wrapper {
+  position: absolute;
+  width: 54px;
+  height: 100%;
+  padding: 7px;
+  box-sizing: border-box;
+}
+.logo {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+
+  background-image: url('../images/logo.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+.nickname {
+  margin: 0;
+  padding-left: 54px;
+  padding-right: 48px;
+  height: 100%;
+}
+.name {
+  padding-top: 8px;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+.bot-label {
+  padding-top: 4px;
+  font-size: 12px;
+  color: #b9cfe3;
+}
+.menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 54px;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+.menu:hover {
+  background-color: #497699;
+  cursor: pointer;
+}
+.menu-dot {
+  margin: 1.5px auto;
+  height: 5px;
+  width: 5px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.content-wrapper {
+  height: 100%;
+  width: 100%;
+  padding-top: 54px;
+  padding-bottom: 46px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.content {
+  height: 100%;
+  width: 100%;
+  padding-top: 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
+  overflow-y: auto;
+}
+.content > :first-child {
+  margin-top: auto !important;
+  /* use !important to prevent breakage from child margin settings */
+}
+.message-wrapper {
+  padding: 0 8px 8px 8px;
+}
+.message, .message-self {
+  max-width: 50%;
+  display: inline-block;
+  padding: 8px;
+  box-shadow: 0px 0px 2px 0 #dfe5ec;
+  border: 1px solid #dfe5ec;
+  border-radius: 0.25rem;
+}
+.message-self {
+  float: right;
+  background-color: #eeffdd;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 46px;
+  width: 100%;
+  padding-top: 6px;
+  padding-left: 16px;
+  padding-right: 46px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 4px 0px #dfe5ec;
+}
+.message-field {
+  width: 100%;
+  padding: 4px 4px 4px 8px;
+  box-sizing: border-box;
+  font-size: 18px;
+  border: 1px solid #dfe5ec;
+  border-radius: 0.2rem;
+}
+.button-send-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 46px;
+  height: 46px;
+  padding: 4px;
+  box-sizing: border-box;
+}
+.button-send {
+  height: 100%;
+  background-image: url('../images/send-button.png');
+  background-size: 75% 75%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+input {
+  font-size: 18px;
+  width: 100%;
+  outline: none;
+  border: none;
+}
