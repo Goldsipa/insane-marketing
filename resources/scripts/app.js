@@ -79,6 +79,7 @@ var sendClick = function () {
   $('input').val('');
   document.querySelector('.button-send').classList.remove('button-pending');
   document.querySelector('.button-send').onclick = null;
+  $(document).off("keydown");
   blockSecond();
 };
 
@@ -103,6 +104,11 @@ function blockFirst() {
     showText("input", "Интересно...", 0, 40);
     document.querySelector('.button-send').classList.add('button-pending');
     document.querySelector('.button-send').onclick = sendClick;
+    $(document).on('keydown', function(e) {
+      if (e.which == 13) {
+        sendClick();
+      }
+    });
   }, 1500);
 }
 
@@ -130,6 +136,11 @@ function blockTrird() {
     $('.phone').mask('(000)000-0000');
     $('.phone').focus();
     document.querySelector('.button-send').onclick = sendNumberClick;
+    $('input[type=text]').on('keydown', function(e) {
+      if (e.which == 13) {
+        sendNumberClick();
+      }
+    });
   }, 1200);
 }
 
