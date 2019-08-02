@@ -4,19 +4,12 @@ function sendMessageSelf(text) {
 
   var message = document.createElement('div');
   message.classList.add('message-self');
-  message.classList.add('noselect');
   message.innerHTML = text || '&nbsp';
   messageWrapper.appendChild(message);
 
   var content = document.querySelector('.content');
   content.appendChild(messageWrapper);
   content.scrollTop = content.scrollHeight;
-
-  // isTyping()
-  // window.setTimeout(isNotTyping, 800);
-  // window.setTimeout(function () {
-  //   sendMessage(text);
-  // }, 1000);
 }
 
 function sendMessage(text) {
@@ -25,7 +18,6 @@ function sendMessage(text) {
 
   var message = document.createElement('div');
   message.classList.add('message');
-  message.classList.add('noselect');
   message.innerHTML = text || '&nbsp';
   messageWrapper.appendChild(message);
 
@@ -34,20 +26,25 @@ function sendMessage(text) {
   content.scrollTop = content.scrollHeight;
 }
 
-function sendMessageInline(text, buttons) {
+function sendMessageInline(text, buttons, pretext='') {
   var messageWrapper = document.createElement('div');
   messageWrapper.classList.add('message-wrapper');
 
+  if(pretext) {
+    var preMessage = document.createElement('div');
+    preMessage.classList.add('premessage-inline');
+    preMessage.innerHTML = pretext || '&nbsp';
+    messageWrapper.appendChild(preMessage);
+  }
+
   var message = document.createElement('div');
   message.classList.add('message-inline');
-  message.classList.add('noselect');
   message.innerHTML = text || '&nbsp';
   messageWrapper.appendChild(message);
 
   for (var i = 0; i < buttons.length; i++) {
     var button = document.createElement('div');
     button.classList.add('button-block');
-    button.classList.add('noselect');
     button.innerHTML = buttons[i] || '&nbsp';
     button.onclick = blockTrird;
     messageWrapper.appendChild(button);
@@ -95,21 +92,27 @@ var sendNumberClick = function () {
 }
 
 function blockFirst() {
+  var reply = 'Интересно...';
   isTyping()
   window.setTimeout(isNotTyping, 700);
   window.setTimeout(function () {
     sendMessage('Привет! Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, provident consequatur illum cupiditate consequuntur, aspernatur optio eos inventore laudantium sequi officia repudiandae quasi eum voluptatibus obcaecati, fuga nemo. Deleniti, impedit.');
   }, 1000);
   window.setTimeout(function () {
-    showText("input", "Интересно...", 0, 40);
+    window.setTimeout(function () {
+      showText("input", reply, 0, 50);
+    }, 1000)
     document.querySelector('.button-send').classList.add('button-pending');
-    document.querySelector('.button-send').onclick = sendClick;
-    $(document).on('keydown', function(e) {
-      if (e.which == 13) {
-        sendClick();
-      }
-    });
-  }, 1500);
+    document.querySelector('.button-send').classList.add('button-grown');
+    document.querySelector('input').classList.add('input-grow');
+    document.querySelector('.message-field').classList.add('message-field-grow');
+    window.setTimeout(function () {
+      document.querySelector('.button-send').onclick = sendClick;
+      $(document).on('keydown', function(e) {
+        if (e.which == 13) sendClick();
+      });
+    }, 1000 + reply.length*50 )
+  }, 6500);
 }
 
 function blockSecond() {
@@ -129,10 +132,11 @@ function blockTrird() {
   window.setTimeout(function () {
     sendMessageInline(
       'Что ещё Вас интересует?',
-      ['Заказать продвижение', 'Узнать цену', 'Наша бот-воронка']
+      ['Заказать продвижение', 'Узнать цену', 'Наша бот-воронка'],
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur consequuntur perspiciatis facere rerum, nemo laborum.'
     );
     document.querySelector('input').disabled = false;
-    document.querySelector('input').placeholder = "(XXX)XXX-XXXX";
+    document.querySelector('input').placeholder = "Оставьте Ваш номер телефона для начала продвижения";
     $('.phone').mask('(000)000-0000');
     $('.phone').focus();
     document.querySelector('.button-send').onclick = sendNumberClick;
@@ -144,9 +148,22 @@ function blockTrird() {
   }, 1200);
 }
 
-$(document).ready(function(){
-  document.querySelector('input').disabled = true;
+var toggleDropdown = function() {
+  var dropdown = document.querySelector('.menu-dropdown');
+  var menu = document.querySelector('.menu');
+  if(dropdown.classList.contains('hidden')) {
+    dropdown.classList.remove('hidden');
+    menu.classList.add('menu-pressed');
+  } else {
+    dropdown.classList.add('hidden');
+    menu.classList.remove('menu-pressed');
+  }
+}
 
+$(document).ready(function(){
+  document.querySelector('input').value = '';
+  document.querySelector('input').disabled = true;
+  document.querySelector('.menu').onclick = toggleDropdown;
   blockFirst();
   // blockTrird();
 });
