@@ -72,6 +72,42 @@
     </footer>
 
   </div>
+
+  <div class="promotion-wrapper hidden">
+    <div class="promotion">
+      <form action="javascript:alert('Отправлено!');" method="post" id="promotion-form">
+        <label for="promotion-name">Имя</label>
+        <input type="text" name="promotion-name" id="promotion-name">
+        <label for="promotion-address">Номер телефона/ссылка для связи</label>
+        <input type="text" name="promotion-address" id="promotion-address">
+        <label for="promotion-message">Сообщение (необязательно)</label>
+        <textarea name="promotion-message" rows="3" id="promotion-name"></textarea>
+        <input type="submit" value="Отправить" id="promotion-submit">
+      </form>
+      <div class="promotion-close">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contacts-wrapper hidden">
+    <div class="contacts">
+      <h3>Контакты</h3>
+      <p>Город Киев</p>
+      <p>Телефон: <a href="tel:098493389">0984933895</a></p>
+      <div class="contacts-close">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+  <audio id="message-sound" preload="none">
+    <source src="./resources/sounds/message_sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
   <script
   src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
