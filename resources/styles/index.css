@@ -1,5 +1,6 @@
 html {
   height: 100%;
+  overflow: hidden;  
 }
 body {
   height: 100%;
@@ -59,7 +60,7 @@ header {
   box-sizing: border-box;
 }
 .bot-label, .typing-wrapper {
-  padding-top: 4px;
+  margin-top: 5px;
   font-size: 16px;
   color: #b9cfe3;
 }
@@ -69,9 +70,9 @@ header {
 }
 .phone-number {
   position: absolute;
-  top: 26px;
+  top: 24px;
   right: 72px;
-  display: none;
+  font-size: 18px;
 }
 .phone-number > a {
   text-decoration: none;
@@ -113,7 +114,43 @@ header {
   /* box-shadow: -2px 1px 3px 0px rgba(60, 75, 87, 0.27); */
   box-shadow: -1px 1px 0px 0px #dfe5ec;
   z-index: 1;
+  animation: fade-in 0.2s;
+  -o-animation: fade-in 0.2s;
+  -moz-animation: fade-in 0.2s;
+  -webkit-animation: fade-in 0.2s;
 }
+.menu-dropdown-hidden {
+  display: none;
+  opacity: 0;
+  max-height: 0;
+  animation: fade-out 0.2s;
+  -o-animation: fade-out 0.2s;
+  -moz-animation: fade-out 0.2s;
+  -webkit-animation: fade-out 0.2s;
+}
+@keyframes fade-in {
+  0% { 
+    opacity: 0;
+  }
+  100% { 
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  0% { 
+    opacity: 1;
+    height: 100px;
+  }
+  99.99% { 
+    opacity: 0;
+    height: 100px;
+  }
+  100% { 
+    opacity: 0;
+    height: 0;
+  }
+}
+
 .menu-dropdown > li {
   padding: 11px 18px;
   cursor: pointer;
@@ -147,11 +184,11 @@ header {
   /* use !important to prevent breakage from child margin settings */
 }
 .content > :last-child {
-  padding-bottom: 16px !important;
+  padding-bottom: 24px !important;
   /* use !important to prevent breakage from child margin settings */
 }
 .message-wrapper {
-  padding: 0 20px 40px 20px;
+  padding: 0 40px 40px 40px;
 }
 
 .message {
@@ -200,6 +237,9 @@ header {
 .message, .message-inline, .premessage-inline, .button-block {
   position: relative;
   animation: slide-in 0.2s ease;
+  -o-animation: slide-in 0.2s ease;
+  -moz-animation: slide-in 0.2s ease;
+  -webkit-animation: slide-in 0.2s ease;
 }
 @keyframes slide-in {
   0% {
@@ -216,10 +256,13 @@ header {
 .message-self {
   float: right;
   background-color: #eeffdd;
-
   position: relative;
-  animation: slide-in-right 0.2s ease;
   border-radius: 0.25rem 0.25rem 0 0.25rem;
+
+  animation: slide-in-right 0.2s ease;
+  -o-animation: slide-in-right 0.2s ease;
+  -moz-animation: slide-in-right 0.2s ease;
+  -webkit-animation: slide-in-right 0.2s ease;
 }
 /* this CS forms the triangles */
 .message-self:after,
@@ -267,6 +310,9 @@ header {
 .premessage-inline {
   margin-bottom: 8px;
 }
+.message-inline > img, .premessage-inline > img {
+  width: 100%;
+}
 .button-block {
   display: block;
   width: 50%;
@@ -309,13 +355,18 @@ footer {
   margin-top: 11px;
   padding: 4px 4px 4px 8px;
   box-sizing: border-box;
-  font-size: 18px;
   border: 1px solid #dfe5ec;
   border-radius: 0.2rem;
 }
 .message-field-grow {
   margin-top: 8px;
   animation: message-field-grow 1s ease;
+  -o-animation: message-field-grow 1s ease;
+  -moz-animation: message-field-grow 1s ease;
+  -webkit-animation: message-field-grow 1s ease;
+}
+.message-field-grown {
+  margin-top: 8px;
 }
 @keyframes message-field-grow {
   0% {
@@ -344,20 +395,30 @@ footer {
   cursor: pointer;
   opacity: 1;
 }
-.button-pending { 
-  animation: pending 1.25s ease-in-out infinite, grow 1s ease forwards;
+.button-grow {
+  background-size: 100% 100%;
+  animation: grow 1s ease forwards;
+  -o-animation: grow 1s ease forwards;
+  -moz-animation: grow 1s ease forwards;
+  -webkit-animation: grow 1s ease forwards;
 }
 .button-grown {
   background-size: 100% 100%;
+}
+.button-pending { 
+  animation: pending 1.25s ease-in-out infinite;
+  -o-animation: pending 1.25s ease-in-out infinite;
+  -moz-animation: pending 1.25s ease-in-out infinite;
+  -webkit-animation: pending 1.25s ease-in-out infinite;
+}
+@keyframes grow {
+  0% { background-size: 60% 60%; }
+  100% { background-size: 100% 100%; }
 }
 @keyframes pending {
   0% { opacity: 1; }
   50% { opacity: 0; }
   100% { opacity: 1; }
-}
-@keyframes grow {
-  0% { background-size: 60% 60%; }
-  100% { background-size: 100% 100%; }
 }
 
 .hidden {
@@ -372,10 +433,19 @@ footer {
 }
 #phone:disabled {
   background: transparent;
+  font-weight: 500;
+  color: #000000;
 }
 .input-grow {
   font-size: 24px;
   animation: input-grow 1s ease forwards;
+  -o-animation: input-grow 1s ease forwards;
+  -moz-animation: input-grow 1s ease forwards;
+  -webkit-animation: input-grow 1s ease forwards;
+}
+.input-grown {
+  font-size: 24px !important;
+  margin-top: 0 !important;
 }
 @keyframes input-grow {
   0% {
@@ -400,6 +470,7 @@ footer {
   justify-content: center;
 
   background: rgba(26,26,26,.7);
+  z-index: 1;
 }
 .promotion,
 .contacts {
@@ -479,15 +550,57 @@ footer {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+#red-arrow {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  padding-bottom: 30%;
+  width: 30%;
+  background-image: url('../images/red-arrow.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  transform: rotate(45deg);
+  animation: red-arrow 1.25s ease-in-out infinite;
+  -o-animation: red-arrow 1.25s ease-in-out infinite;
+  -moz-animation: red-arrow 1.25s ease-in-out infinite;
+  -webkit-animation: red-arrow 1.25s ease-in-out infinite;
+}
+@keyframes red-arrow {
+  0% {
+    bottom: 40px;
+    right: 40px;
+  }
+  50% {
+    bottom: 80px;
+    right: 80px;
+  }
+  100% {
+    bottom: 40px;
+    right: 40px;
+  }
+}
+
 @media (max-width: 767px) {
   .name {
     font-size: 18px;
   }
+  .bot-label, .typing-wrapper {
+    margin-top: 6px;
+  }
   .phone-number {
-    display: block;
+    top: 39px;
+    font-size: 16px;
   }
   .content {
     font-size: 18px;
+  }
+  .content > :last-child {
+    padding-bottom: 16px !important;
+    /* use !important to prevent breakage from child margin settings */
+  }
+  .message-wrapper {
+    padding: 0 20px 40px 20px;
   }
   .message, .message-self {
     max-width: 75%;
@@ -503,5 +616,14 @@ footer {
   }
   .message-wrapper {
     padding-bottom: 16px;
+  }
+  #phone::placeholder {
+    position: relative;
+    top: -5px;
+    font-size: 12px;
+  }
+  #red-arrow {
+    padding-bottom: 50%;
+    width: 50%;
   }
 }

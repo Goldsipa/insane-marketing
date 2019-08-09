@@ -22,7 +22,7 @@ function sendMessageSelf(text) {
 
   var content = document.querySelector('.content');
   content.appendChild(messageWrapper);
-  content.scrollTop = content.scrollHeight;
+  content.scrollTop = content.scrollHeight*2;
 }
 
 function sendMessage(text) {
@@ -36,7 +36,7 @@ function sendMessage(text) {
 
   var content = document.querySelector('.content');
   content.appendChild(messageWrapper);
-  content.scrollTop = content.scrollHeight;
+  content.scrollTop = content.scrollHeight*2;
 
   playSound();
 }
@@ -80,7 +80,7 @@ function sendMessageInline(text, buttons, pretext='') {
 
   var content = document.querySelector('.content');
   content.appendChild(messageWrapper);
-  content.scrollTop = content.scrollHeight;
+  content.scrollTop = content.scrollHeight*2;
 
   playSound();
 }
@@ -121,6 +121,42 @@ var sendNumberClick = function () {
   }, 1000);
 }
 
+function changeFieldToPhone() {
+  document.querySelector('#phone').disabled = false;
+  document.querySelector('#phone').placeholder = "Оставьте Ваш номер телефона для начала продвижения";
+  $('.phone').val('');
+  $('.phone').mask('(000)000-0000');
+  $('.phone').focus();
+  document.querySelector('.button-send').onclick = sendNumberClick;
+  $('#phone').on('keydown', function(e) {
+    if (e.which == 13) {
+      sendNumberClick();
+    }
+  });
+}
+
+function checkRedArrow() {
+  var redArrow = document.querySelector('#red-arrow');
+  if(!redArrow.classList.contains('hidden')) redArrow.classList.add('hidden');
+}
+
+function checkFooterGrown() {
+  checkRedArrow();
+  var messageField = document.querySelector('.message-field');
+  var inputField = document.querySelector('#phone');
+  var buttonSend = document.querySelector('.button-send');
+  if(messageField.classList.contains('message-field-grow')) {
+    messageField.classList.remove('message-field-grow');
+    inputField.classList.remove('input-grow');
+    buttonSend.classList.remove('button-grow');
+  }
+  if(!messageField.classList.contains('message-field-grown')) {
+    messageField.classList.add('message-field-grown');
+    inputField.classList.add('input-grown');
+    buttonSend.classList.add('button-grown');
+  }
+}
+
 function blockFirst() {
   var reply = 'Интересно...';
   isTyping()
@@ -130,26 +166,32 @@ function blockFirst() {
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, provident consequatur illum cupiditate consequuntur, aspernatur optio eos inventore laudantium sequi officia repudiandae quasi eum voluptatibus obcaecati, fuga nemo. Deleniti, impedit.');
   }, 1000);
   var t1 = window.setTimeout(function () {
+    var showTextDelay = 150;
     var t2 = window.setTimeout(function () {
-      showText('#phone', reply, 0, 50);
+      showText('#phone', reply, 0, showTextDelay);
     }, 1000)
     timeouts.push(t2);
-    document.querySelector('.button-send').classList.add('button-pending');
-    document.querySelector('.button-send').classList.add('button-grown');
+    document.querySelector('.button-send').classList.add('button-grow');
     document.querySelector('#phone').classList.add('input-grow');
     document.querySelector('.message-field').classList.add('message-field-grow');
     var t3 = window.setTimeout(function () {
+      document.querySelector('.button-send').classList.add('button-pending');
       document.querySelector('.button-send').onclick = sendClick;
       $(document).on('keydown', function(e) {
         if (e.which == 13) sendClick();
       });
-    }, 1000 + reply.length*50 );
+    }, 1000 + reply.length*showTextDelay );
     timeouts.push(t3);
-  }, 6500);
+  }, 4000);
   timeouts.push(t1);
+  var t4 = window.setTimeout(function () {
+    document.querySelector('#red-arrow').classList.remove('hidden');
+  }, 19000);
+  timeouts.push(t4);
 }
 
 function blockSecond() {
+  checkFooterGrown();
   window.setTimeout(isTyping, 200);
   window.setTimeout(isNotTyping, 1000);
   window.setTimeout(function () {
@@ -160,10 +202,12 @@ function blockSecond() {
         {text:'Почему это эффективно?', onclick:blockTrird}
       ]
     );
+    changeFieldToPhone();
   }, 1200);
 }
 
 function blockTrird() {
+  checkFooterGrown();
   document.querySelector('.button-send').classList.remove('button-pending');
   cancelTimeouts();
   window.setTimeout(isTyping, 200);
@@ -178,21 +222,12 @@ function blockTrird() {
       ],
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur consequuntur perspiciatis facere rerum, nemo laborum.'
     );
-    $('.phone').val('');
-    document.querySelector('#phone').disabled = false;
-    document.querySelector('#phone').placeholder = "Оставьте Ваш номер телефона для начала продвижения";
-    $('.phone').mask('(000)000-0000');
-    // $('.phone').focus();
-    document.querySelector('.button-send').onclick = sendNumberClick;
-    $('#phone').on('keydown', function(e) {
-      if (e.which == 13) {
-        sendNumberClick();
-      }
-    });
+    changeFieldToPhone();
   }, 1200);
 }
 
 function getPrice() {
+  checkFooterGrown();
   document.querySelector('.button-send').classList.remove('button-pending');
   cancelTimeouts();
   window.setTimeout(isTyping, 200);
@@ -205,32 +240,15 @@ function getPrice() {
         {text:'Узнать цену', onclick:getPrice},
         {text:'Наша бот-воронка', link:'http://www.google.com/'}
       ],
-      'Цена:<br/>\
-      easy: 100<br/>\
-      medium: 200<br/>\
-      hard: 300<br/>'
+      '<img src="./resources/images/send-button.png" alt="prices">'
     );
-    document.querySelector('#phone').disabled = false;
-    document.querySelector('#phone').placeholder = "Оставьте Ваш номер телефона для начала продвижения";
-    $('.phone').val('');
-    $('.phone').mask('(000)000-0000');
-    $('.phone').focus();
-    document.querySelector('.button-send').onclick = sendNumberClick;
-    $('#phone').on('keydown', function(e) {
-      if (e.which == 13) {
-        sendNumberClick();
-      }
-    });
+    changeFieldToPhone();
   }, 1200);
 }
 
 function checkCloseDropdown() {
   var dropdown = document.querySelector('.menu-dropdown');
-  var menu = document.querySelector('.menu');
-  if (!dropdown.classList.contains('hidden')) {
-    dropdown.classList.add('hidden');
-    menu.classList.remove('menu-pressed');
-  }
+  if (!dropdown.classList.contains('menu-dropdown-hidden')) toggleDropdown();
 }
 
 function openPromotion() {
@@ -266,11 +284,11 @@ function openContacts() {
 var toggleDropdown = function() {
   var dropdown = document.querySelector('.menu-dropdown');
   var menu = document.querySelector('.menu');
-  if(dropdown.classList.contains('hidden')) {
-    dropdown.classList.remove('hidden');
+  if(dropdown.classList.contains('menu-dropdown-hidden')) {
+    dropdown.classList.remove('menu-dropdown-hidden');
     menu.classList.add('menu-pressed');
   } else {
-    dropdown.classList.add('hidden');
+    dropdown.classList.add('menu-dropdown-hidden');
     menu.classList.remove('menu-pressed');
   }
 }
@@ -307,4 +325,16 @@ $(document).ready(function(){
   assignDropdown();
   blockFirst();
   // blockTrird();
+  
+});
+
+var menu = $('.menu');
+var dropdown = $('.menu-dropdown');
+$(document).mouseup(function(e) {
+  if (!menu.is(e.target) // if the target of the click isn't the container...
+  && menu.has(e.target).length === 0 // ... nor a descendant of the container
+  && !dropdown.is(e.target) ) // ... nor the dropdown...
+  {
+    checkCloseDropdown()
+  }
 });
