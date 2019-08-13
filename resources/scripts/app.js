@@ -126,7 +126,6 @@ function changeFieldToPhone() {
   document.querySelector('#phone').placeholder = "Оставьте Ваш номер телефона для начала продвижения";
   $('.phone').val('');
   $('.phone').mask('(000)000-0000');
-  $('.phone').focus();
   document.querySelector('.button-send').onclick = sendNumberClick;
   $('#phone').on('keydown', function(e) {
     if (e.which == 13) {
