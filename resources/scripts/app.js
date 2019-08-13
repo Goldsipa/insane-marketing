@@ -315,6 +315,7 @@ function assignDropdown() {
 }
 
 $(document).ready(function(){
+  cancelTimeouts(); // To prevent bug after reloading page
   document.querySelector('#phone').value = '';
   document.querySelector('#phone').disabled = true;
   document.querySelector('.menu').onclick = toggleDropdown;
