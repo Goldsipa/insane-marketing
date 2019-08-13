@@ -1,6 +1,7 @@
 var timeouts = [];
 
 function cancelTimeouts() {
+  console.log(timeouts);
   while(timeouts.length > 0) clearTimeout(timeouts.pop());
 }
 
@@ -190,6 +191,7 @@ function blockFirst() {
 }
 
 function blockSecond() {
+  cancelTimeouts();
   checkFooterGrown();
   window.setTimeout(isTyping, 200);
   window.setTimeout(isNotTyping, 1000);
