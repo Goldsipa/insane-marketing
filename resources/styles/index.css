@@ -9,6 +9,7 @@ body {
   /* background-color: #e7ebf0; */
   font-family: "Open Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
   /* font-family: "Lucida Grande"; */
+  overflow: hidden;
 }
 .wrapper {
   position: relative;
@@ -628,5 +629,24 @@ footer {
   #red-arrow {
     padding-bottom: 50%;
     width: 50%;
+  }
+}
+
+@media (max-width: 359px) {
+  .name {
+    padding-top: 6px;
+    font-size: 16px;
+    line-height: 19px;
+  }
+  .bot-label, .typing-wrapper {
+    margin-top: 20px;
+  }
+  .phone-number {
+    position: inherit;
+    right: auto;
+    left: 72px;
+    top: 26px;
+    font-size: 16px;
+    font-weight: bold;
   }
 }

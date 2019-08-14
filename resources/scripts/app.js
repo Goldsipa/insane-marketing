@@ -1,7 +1,6 @@
 var timeouts = [];
 
 function cancelTimeouts() {
-  console.log(timeouts);
   while(timeouts.length > 0) clearTimeout(timeouts.pop());
 }
 
@@ -10,6 +9,11 @@ function playSound() {
   sound.pause();
   sound.currentTime = 0;
   sound.play();
+}
+
+function scrollToTop() {
+  var content = document.querySelector('.content');
+  content.scrollTop = content.scrollHeight*2;
 }
 
 function sendMessageSelf(text) {
@@ -23,7 +27,7 @@ function sendMessageSelf(text) {
 
   var content = document.querySelector('.content');
   content.appendChild(messageWrapper);
-  content.scrollTop = content.scrollHeight*2;
+  scrollToTop();
 }
 
 function sendMessage(text) {
@@ -37,8 +41,8 @@ function sendMessage(text) {
 
   var content = document.querySelector('.content');
   content.appendChild(messageWrapper);
-  content.scrollTop = content.scrollHeight*2;
 
+  scrollToTop();
   playSound();
 }
 
@@ -81,8 +85,8 @@ function sendMessageInline(text, buttons, pretext='') {
 
   var content = document.querySelector('.content');
   content.appendChild(messageWrapper);
-  content.scrollTop = content.scrollHeight*2;
 
+  scrollToTop();
   playSound();
 }
 
@@ -241,7 +245,7 @@ function getPrice() {
         {text:'Узнать цену', onclick:getPrice},
         {text:'Наша бот-воронка', link:'http://www.google.com/'}
       ],
-      '<img src="./resources/images/send-button.png" alt="prices">'
+      '<img src="./resources/images/send-button.png" alt="prices" onload="scrollToTop()">'
     );
     changeFieldToPhone();
   }, 1200);
