@@ -623,7 +623,6 @@ footer {
   }
   #phone::placeholder {
     position: relative;
-    top: -5px;
     font-size: 12px;
   }
   #red-arrow {
