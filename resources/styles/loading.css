@@ -1,4 +1,8 @@
-.lds-facebook {
+/* ////////////////////////////////////////// */
+/* //////// styles for typing loader //////// */
+/* ////////////////////////////////////////// */
+
+.typing-loader {
   display: inline-block;
   position: relative;
   float: left;
@@ -6,23 +10,24 @@
   width: 32px;
   height: 12px;
 }
-.lds-facebook div {
+
+.typing-loader div {
   display: inline-block;
   position: absolute;
   background: #b9cfe3;
   border-radius: 50%;
 }
 
-.lds-facebook div:nth-child(1) {
+.typing-loader div:nth-child(1) {
   left: 4px;
   top: 4px;
   width: 4px;
   height: 4px;
 
-  animation: lds-facebook1 0.8s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  animation: typing-loader1 0.8s cubic-bezier(0, 0.5, 0.5, 1) infinite;
   animation-delay: -0.24s;
 }
-@keyframes lds-facebook1 {
+@keyframes typing-loader1 {
   0%, 100% {
     left: 4px;
     top: 4px;
@@ -37,16 +42,16 @@
   }
 }
 
-.lds-facebook div:nth-child(2) {
+.typing-loader div:nth-child(2) {
   left: 14px;
   top: 4px;
   width: 4px;
   height: 4px;
 
-  animation: lds-facebook2 0.8s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  animation: typing-loader2 0.8s cubic-bezier(0, 0.5, 0.5, 1) infinite;
   animation-delay: -0.12s;
 }
-@keyframes lds-facebook2 {
+@keyframes typing-loader2 {
   0%, 100% {
     left: 14px;
     top: 4px;
@@ -61,16 +66,16 @@
   }
 }
 
-.lds-facebook div:nth-child(3) {
+.typing-loader div:nth-child(3) {
   left: 24px;
   top: 4px;
   width: 4px;
   height: 4px;
 
-  animation: lds-facebook3 0.8s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  animation: typing-loader3 0.8s cubic-bezier(0, 0.5, 0.5, 1) infinite;
   animation-delay: 0;
 }
-@keyframes lds-facebook3 {
+@keyframes typing-loader3 {
   0%, 100% {
     left: 24px;
     top: 4px;
